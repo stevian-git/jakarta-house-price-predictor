@@ -256,7 +256,7 @@ once size and location are known.
 Requirements: Python 3.12 and [uv](https://docs.astral.sh/uv/).
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/stevian-git/jakarta-house-price-predictor.git
 cd jakarta-house-price-predictor
 uv sync
 ```
