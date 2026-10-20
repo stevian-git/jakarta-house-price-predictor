@@ -1,11 +1,11 @@
-# HANDOFF — Proyek ML `indonesian-house-price-predictor`
+# HANDOFF — Proyek ML `jakarta-house-price-predictor`
 
 ## 1. Konteks Proyek
 
-Melanjutkan pengembangan proyek Machine Learning untuk prediksi harga rumah di Indonesia pada repository BARU.
+Melanjutkan pengembangan proyek Machine Learning untuk prediksi harga rumah di DKI Jakarta pada repository BARU.
 
-- **Nama proyek:** `indonesian-house-price-predictor`
-- **Lokasi lokal:** `~/python/indonesian-house-price-predictor`
+- **Nama proyek:** `jakarta-house-price-predictor`
+- **Lokasi lokal:** `~/python/jakarta-house-price-predictor`
 - **Status repository:** Baru, repository publik di GitHub
 - **Tujuan:** Portfolio Machine Learning / tugas kuliah
 - **Bahasa kode dan dokumentasi:** Python; README dalam bahasa Inggris
@@ -701,7 +701,7 @@ Jangan menulis seluruh kode proyek.
 
 Langkah pertama adalah memeriksa environment dan memastikan lokasi kerja sesuai dengan handoff:
 
-`~/python/indonesian-house-price-predictor`
+`~/python/jakarta-house-price-predictor`
 
 Berikan satu langkah command kecil, minta user menjalankannya, lalu periksa output sebelum melanjutkan. Setelah Fase 0 selesai dan diverifikasi, lanjutkan ke Fase 1.
 

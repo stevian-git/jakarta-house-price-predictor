@@ -257,7 +257,7 @@ Requirements: Python 3.12 and [uv](https://docs.astral.sh/uv/).
 
 ```bash
 git clone <repository-url>
-cd indonesian-house-price-predictor
+cd jakarta-house-price-predictor
 uv sync
 ```
 
