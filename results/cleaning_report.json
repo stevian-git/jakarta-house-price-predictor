@@ -1,0 +1,88 @@
+{
+  "dataset_id": "abiyyurasyiq/jakarta-house-price-dataset",
+  "source_file": "data/raw/jakarta_house.csv",
+  "raw_rows": 10000,
+  "features": [
+    "city",
+    "building_area",
+    "bed_rooms",
+    "bath_rooms",
+    "carport"
+  ],
+  "target": "price",
+  "rules": {
+    "drop_duplicates": "semua kolom kecuali index",
+    "min_price": 100000000,
+    "min_building_area": 10,
+    "zero_rooms": "bed_rooms/bath_rooms == 0 dianggap missing",
+    "carport_zero": "dipertahankan (tidak punya carport)",
+    "high_prices": "dipertahankan; target log1p digunakan saat training"
+  },
+  "steps": [
+    {
+      "step": "drop_duplicate_listings",
+      "rows_before": 10000,
+      "rows_after": 9474,
+      "rows_removed": 526,
+      "reason": "duplikat persis selain index"
+    },
+    {
+      "step": "drop_invalid_price",
+      "rows_before": 9474,
+      "rows_after": 9474,
+      "rows_removed": 0,
+      "reason": "price missing, nol, atau negatif"
+    },
+    {
+      "step": "drop_low_price",
+      "rows_before": 9474,
+      "rows_after": 9461,
+      "rows_removed": 13,
+      "reason": "price < Rp100,000,000 (tidak masuk akal untuk rumah Jakarta)"
+    },
+    {
+      "step": "drop_invalid_building_area",
+      "rows_before": 9461,
+      "rows_after": 9401,
+      "rows_removed": 60,
+      "reason": "building_area missing atau < 10 m2"
+    }
+  ],
+  "timestamp_utc": "2026-10-20T08:29:59.335234+00:00",
+  "zero_rooms_masked": {
+    "bed_rooms": 190,
+    "bath_rooms": 187,
+    "note": "diimputasi median di dalam pipeline training"
+  },
+  "clean_rows": 9401,
+  "rows_removed_total": 599,
+  "missing_after_cleaning": {
+    "index": 0,
+    "price": 0,
+    "district": 0,
+    "city": 0,
+    "bed_rooms": 190,
+    "bath_rooms": 187,
+    "carport": 0,
+    "land_area": 3,
+    "building_area": 0
+  },
+  "columns": [
+    "index",
+    "price",
+    "district",
+    "city",
+    "bed_rooms",
+    "bath_rooms",
+    "carport",
+    "land_area",
+    "building_area"
+  ],
+  "price_stats_after_cleaning": {
+    "min": 116000000.0,
+    "median": 4500000000.0,
+    "max": 900000000000.0,
+    "mean": 10166875438.783108,
+    "skew": 13.756125376161615
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "dataset_id": "abiyyurasyiq/jakarta-house-price-dataset",
+  "n_samples": 9401,
+  "n_train": 7520,
+  "n_test": 1881,
+  "features": [
+    "city",
+    "building_area",
+    "bed_rooms",
+    "bath_rooms",
+    "carport"
+  ],
+  "target": "price",
+  "target_transform": "log1p / expm1 via TransformedTargetRegressor",
+  "preprocessing": "numeric: median imputation + Yeo-Johnson power transform; city: most-frequent imputation + one-hot (handle_unknown=ignore)",
+  "random_state": 42,
+  "split": {
+    "test_size": 0.2,
+    "random_state": 42,
+    "n_train": 7520,
+    "n_test": 1881
+  },
+  "cv": {
+    "folds": 5,
+    "shuffle": true,
+    "random_state": 42
+  },
+  "model": {
+    "name": "gradient_boosting_tuned",
+    "best_params": {
+      "learning_rate": 0.1,
+      "max_depth": 3,
+      "n_estimators": 400,
+      "subsample": 0.8
+    },
+    "cv_metrics": {
+      "mae": {
+        "mean": 4370866728.490031,
+        "std": 142688111.37049946
+      },
+      "rmse": {
+        "mean": 14905937070.375452,
+        "std": 4593795731.782909
+      },
+      "r2": {
+        "mean": 0.46201134304911856,
+        "std": 0.09268309238219907
+      }
+    },
+    "train_metrics": {
+      "mae": 3618904193.1833057,
+      "rmse": 10174635735.37566,
+      "r2": 0.7555277399612023
+    }
+  },
+  "test_metrics": {
+    "mae": 4579679051.736681,
+    "rmse": 13397199018.107454,
+    "r2": 0.5214581161691692
+  },
+  "train_vs_test": {
+    "mae_gap": 960774858.5533752,
+    "rmse_gap": 3222563282.7317944,
+    "r2_gap": 0.2340696237920331
+  },
+  "error_by_city": {
+    "Jakarta Selatan": {
+      "n": 645,
+      "mae": 8491036328.378827,
+      "rmse": 20234412277.96004,
+      "median_abs_error": 3322032370.3535776
+    },
+    "Jakarta Barat": {
+      "n": 481,
+      "mae": 1381486639.573018,
+      "rmse": 2655316645.5214405,
+      "median_abs_error": 657058359.8969154
+    },
+    "Jakarta Utara": {
+      "n": 331,
+      "mae": 2561812076.733676,
+      "rmse": 5080845226.8772745,
+      "median_abs_error": 1251537514.6021013
+    },
+    "Jakarta Timur": {
+      "n": 305,
+      "mae": 995270379.2842143,
+      "rmse": 1766584882.5239344,
+      "median_abs_error": 607810956.6914089
+    },
+    "Jakarta Pusat": {
+      "n": 119,
+      "mae": 11106264939.472261,
+      "rmse": 22573855330.22407,
+      "median_abs_error": 2696229559.0899773
+    }
+  },
+  "error_by_price_band": {
+    "<1B": {
+      "n": 68,
+      "mae": 473270388.2415895,
+      "rmse": 1038235091.9135462,
+      "median_abs_error": 267448179.6797586
+    },
+    "1-3B": {
+      "n": 555,
+      "mae": 763921796.2470369,
+      "rmse": 1420932261.3949542,
+      "median_abs_error": 512991783.1904726
+    },
+    "3-5B": {
+      "n": 363,
+      "mae": 1264695124.6340096,
+      "rmse": 2032630505.5401998,
+      "median_abs_error": 814140620.5183263
+    },
+    "5-10B": {
+      "n": 403,
+      "mae": 2575157440.232949,
+      "rmse": 3720319209.42625,
+      "median_abs_error": 1851465877.0556626
+    },
+    "10-30B": {
+      "n": 347,
+      "mae": 6391449165.582003,
+      "rmse": 8423445910.234828,
+      "median_abs_error": 5140201919.386686
+    },
+    ">30B": {
+      "n": 145,
+      "mae": 30644908095.76679,
+      "rmse": 45842196670.91619,
+      "median_abs_error": 18907365859.02823
+    }
+  },
+  "feature_importance": {
+    "city": {
+      "mean": 1017753976.9580162,
+      "std": 81902337.62987655
+    },
+    "building_area": {
+      "mean": 4504010963.320425,
+      "std": 122950375.18552417
+    },
+    "bed_rooms": {
+      "mean": 404438309.600365,
+      "std": 48139674.442333125
+    },
+    "bath_rooms": {
+      "mean": 183899068.99922818,
+      "std": 27529003.28834891
+    },
+    "carport": {
+      "mean": 539387332.6446388,
+      "std": 25772559.753548093
+    }
+  },
+  "feature_importance_note": "Permutation importance on the test set, computed after model selection for interpretation only; not used to choose the model.",
+  "cities": [
+    "Jakarta Barat",
+    "Jakarta Pusat",
+    "Jakarta Selatan",
+    "Jakarta Timur",
+    "Jakarta Utara"
+  ],
+  "model_path": "models/model.joblib",
+  "library_versions": {
+    "python": "3.12",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "timestamp_utc": "2026-10-20T09:00:42.570340+00:00",
+  "notes": "Test set evaluated once after model selection via 5-fold CV on the training set. Metrics are in IDR and TTR inverse transform is applied once."
+}

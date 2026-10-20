@@ -1,0 +1,324 @@
+{
+  "stage": "tuning",
+  "dataset_id": "abiyyurasyiq/jakarta-house-price-dataset",
+  "n_rows": 9401,
+  "n_train": 7520,
+  "n_test": 1881,
+  "features": [
+    "city",
+    "building_area",
+    "bed_rooms",
+    "bath_rooms",
+    "carport"
+  ],
+  "target": "price",
+  "target_transform": "log1p / expm1 via TransformedTargetRegressor",
+  "preprocessing": "numeric: median imputation + Yeo-Johnson power transform; city: most-frequent imputation + one-hot (handle_unknown=ignore)",
+  "random_state": 42,
+  "test_size": 0.2,
+  "cv": {
+    "folds": 5,
+    "shuffle": true,
+    "random_state": 42
+  },
+  "searches": {
+    "random_forest": {
+      "param_grid": {
+        "regressor__model__n_estimators": [
+          300,
+          500
+        ],
+        "regressor__model__max_depth": [
+          null,
+          20,
+          40
+        ],
+        "regressor__model__min_samples_leaf": [
+          1,
+          2,
+          4
+        ],
+        "regressor__model__max_features": [
+          "sqrt"
+        ]
+      },
+      "n_candidates": 18,
+      "n_fits": 91,
+      "best_params": {
+        "max_depth": null,
+        "max_features": "sqrt",
+        "min_samples_leaf": 2,
+        "n_estimators": 500
+      },
+      "cv_metrics": {
+        "mae": {
+          "mean": 4461670999.949243,
+          "std": 100709226.86449374
+        },
+        "rmse": {
+          "mean": 15429244367.672588,
+          "std": 4702210483.689405
+        },
+        "r2": {
+          "mean": 0.4249097074438028,
+          "std": 0.09277926024949268
+        }
+      },
+      "top_5": [
+        {
+          "params": {
+            "max_depth": 40,
+            "max_features": "sqrt",
+            "min_samples_leaf": 2,
+            "n_estimators": 500
+          },
+          "cv_mae": 4461670999.949243,
+          "cv_rmse": 15429244367.672588,
+          "cv_r2": 0.4249097074438028
+        },
+        {
+          "params": {
+            "max_depth": null,
+            "max_features": "sqrt",
+            "min_samples_leaf": 2,
+            "n_estimators": 500
+          },
+          "cv_mae": 4461670999.949243,
+          "cv_rmse": 15429244367.672588,
+          "cv_r2": 0.4249097074438028
+        },
+        {
+          "params": {
+            "max_depth": null,
+            "max_features": "sqrt",
+            "min_samples_leaf": 2,
+            "n_estimators": 300
+          },
+          "cv_mae": 4462110467.802904,
+          "cv_rmse": 15423822983.750284,
+          "cv_r2": 0.4252546210080804
+        },
+        {
+          "params": {
+            "max_depth": 40,
+            "max_features": "sqrt",
+            "min_samples_leaf": 2,
+            "n_estimators": 300
+          },
+          "cv_mae": 4462110467.802904,
+          "cv_rmse": 15423822983.750284,
+          "cv_r2": 0.4252546210080804
+        },
+        {
+          "params": {
+            "max_depth": 20,
+            "max_features": "sqrt",
+            "min_samples_leaf": 2,
+            "n_estimators": 500
+          },
+          "cv_mae": 4465527207.4168625,
+          "cv_rmse": 15437492171.56663,
+          "cv_r2": 0.4241008714859566
+        }
+      ],
+      "search_seconds": 15.68475400004536
+    },
+    "gradient_boosting": {
+      "param_grid": {
+        "regressor__model__n_estimators": [
+          200,
+          400
+        ],
+        "regressor__model__learning_rate": [
+          0.05,
+          0.1
+        ],
+        "regressor__model__max_depth": [
+          2,
+          3
+        ],
+        "regressor__model__subsample": [
+          0.8,
+          1.0
+        ]
+      },
+      "n_candidates": 16,
+      "n_fits": 81,
+      "best_params": {
+        "learning_rate": 0.1,
+        "max_depth": 3,
+        "n_estimators": 400,
+        "subsample": 0.8
+      },
+      "cv_metrics": {
+        "mae": {
+          "mean": 4370866728.490031,
+          "std": 142688111.37049946
+        },
+        "rmse": {
+          "mean": 14905937070.375452,
+          "std": 4593795731.782909
+        },
+        "r2": {
+          "mean": 0.46201134304911856,
+          "std": 0.09268309238219907
+        }
+      },
+      "top_5": [
+        {
+          "params": {
+            "learning_rate": 0.1,
+            "max_depth": 3,
+            "n_estimators": 400,
+            "subsample": 0.8
+          },
+          "cv_mae": 4370866728.490031,
+          "cv_rmse": 14905937070.375452,
+          "cv_r2": 0.46201134304911856
+        },
+        {
+          "params": {
+            "learning_rate": 0.05,
+            "max_depth": 3,
+            "n_estimators": 400,
+            "subsample": 0.8
+          },
+          "cv_mae": 4371898536.588822,
+          "cv_rmse": 14868679314.400223,
+          "cv_r2": 0.4682916087256864
+        },
+        {
+          "params": {
+            "learning_rate": 0.1,
+            "max_depth": 2,
+            "n_estimators": 400,
+            "subsample": 0.8
+          },
+          "cv_mae": 4385971670.121895,
+          "cv_rmse": 14636440656.330603,
+          "cv_r2": 0.479624613737293
+        },
+        {
+          "params": {
+            "learning_rate": 0.1,
+            "max_depth": 3,
+            "n_estimators": 200,
+            "subsample": 0.8
+          },
+          "cv_mae": 4389840039.90091,
+          "cv_rmse": 14954508618.950642,
+          "cv_r2": 0.45975770506957014
+        },
+        {
+          "params": {
+            "learning_rate": 0.1,
+            "max_depth": 3,
+            "n_estimators": 400,
+            "subsample": 1.0
+          },
+          "cv_mae": 4391623926.364042,
+          "cv_rmse": 14884032941.94852,
+          "cv_r2": 0.4631312482534404
+        }
+      ],
+      "search_seconds": 6.949824374867603
+    }
+  },
+  "candidates": {
+    "random_forest_tuned": {
+      "mae": {
+        "mean": 4461670999.949243,
+        "std": 100709226.86449374
+      },
+      "rmse": {
+        "mean": 15429244367.672588,
+        "std": 4702210483.689405
+      },
+      "r2": {
+        "mean": 0.4249097074438028,
+        "std": 0.09277926024949268
+      }
+    },
+    "gradient_boosting_tuned": {
+      "mae": {
+        "mean": 4370866728.490031,
+        "std": 142688111.37049946
+      },
+      "rmse": {
+        "mean": 14905937070.375452,
+        "std": 4593795731.782909
+      },
+      "r2": {
+        "mean": 0.46201134304911856,
+        "std": 0.09268309238219907
+      }
+    },
+    "ridge": {
+      "mae": {
+        "mean": 4671027364.97396,
+        "std": 98671819.67779754
+      },
+      "rmse": {
+        "mean": 15447049645.806417,
+        "std": 4661322433.901767
+      },
+      "r2": {
+        "mean": 0.4175556936174513,
+        "std": 0.10180876256459903
+      }
+    },
+    "dummy": {
+      "mae": {
+        "mean": 7541252925.531916,
+        "std": 179664216.63792315
+      },
+      "rmse": {
+        "mean": 20860202217.644337,
+        "std": 4327044550.242594
+      },
+      "r2": {
+        "mean": -0.08379056599353132,
+        "std": 0.025202043202304236
+      }
+    }
+  },
+  "selected": {
+    "name": "gradient_boosting_tuned",
+    "best_params": {
+      "learning_rate": 0.1,
+      "max_depth": 3,
+      "n_estimators": 400,
+      "subsample": 0.8
+    },
+    "cv_metrics": {
+      "mae": {
+        "mean": 4370866728.490031,
+        "std": 142688111.37049946
+      },
+      "rmse": {
+        "mean": 14905937070.375452,
+        "std": 4593795731.782909
+      },
+      "r2": {
+        "mean": 0.46201134304911856,
+        "std": 0.09268309238219907
+      }
+    },
+    "train_metrics": {
+      "mae": 3618904193.1833057,
+      "rmse": 10174635735.37566,
+      "r2": 0.7555277399612023
+    }
+  },
+  "selection_rule": "lowest CV MAE; tie-break RMSE then R2",
+  "test_evaluated": false,
+  "model_path": "models/model.joblib",
+  "library_versions": {
+    "python": "3.12",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "timestamp_utc": "2026-10-20T08:59:06.647925+00:00"
+}

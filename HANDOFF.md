@@ -701,7 +701,7 @@ Jangan menulis seluruh kode proyek.
 
 Langkah pertama adalah memeriksa environment dan memastikan lokasi kerja sesuai dengan handoff:
 
-`~/python/rumah-price-predictor`
+`~/python/indonesian-house-price-predictor`
 
 Berikan satu langkah command kecil, minta user menjalankannya, lalu periksa output sebelum melanjutkan. Setelah Fase 0 selesai dan diverifikasi, lanjutkan ke Fase 1.
 

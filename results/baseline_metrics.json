@@ -1,0 +1,123 @@
+{
+  "stage": "baseline",
+  "dataset_id": "abiyyurasyiq/jakarta-house-price-dataset",
+  "n_rows": 9401,
+  "n_train": 7520,
+  "n_test": 1881,
+  "features": [
+    "city",
+    "building_area",
+    "bed_rooms",
+    "bath_rooms",
+    "carport"
+  ],
+  "target": "price",
+  "target_transform": "log1p / expm1 via TransformedTargetRegressor",
+  "preprocessing": "numeric: median imputation + Yeo-Johnson power transform; city: most-frequent imputation + one-hot (handle_unknown=ignore)",
+  "random_state": 42,
+  "test_size": 0.2,
+  "cv": {
+    "folds": 5,
+    "shuffle": true,
+    "random_state": 42
+  },
+  "metric_contract": "MAE/RMSE/R2 computed on IDR predictions; TTR inverse transform applied once",
+  "models": {
+    "dummy": {
+      "train": {
+        "mae": 7541252925.531915,
+        "rmse": 21304256642.765026,
+        "r2": -0.0718268150134822
+      },
+      "cv": {
+        "mae": {
+          "mean": 7541252925.531916,
+          "std": 179664216.63792315
+        },
+        "rmse": {
+          "mean": 20860202217.644337,
+          "std": 4327044550.242594
+        },
+        "r2": {
+          "mean": -0.08379056599353132,
+          "std": 0.025202043202304236
+        }
+      },
+      "fit_seconds": 0.06133091705851257
+    },
+    "ridge": {
+      "train": {
+        "mae": 4659364058.673942,
+        "rmse": 16052060953.558855,
+        "r2": 0.39150999633469885
+      },
+      "cv": {
+        "mae": {
+          "mean": 4671027364.97396,
+          "std": 98671819.67779754
+        },
+        "rmse": {
+          "mean": 15447049645.806417,
+          "std": 4661322433.901767
+        },
+        "r2": {
+          "mean": 0.4175556936174513,
+          "std": 0.10180876256459903
+        }
+      },
+      "fit_seconds": 0.046889750054106116
+    },
+    "random_forest": {
+      "train": {
+        "mae": 2238789943.4271874,
+        "rmse": 9044547190.626858,
+        "r2": 0.8068185125265903
+      },
+      "cv": {
+        "mae": {
+          "mean": 4540647765.134666,
+          "std": 145243541.66443893
+        },
+        "rmse": {
+          "mean": 14948410191.755878,
+          "std": 4289378581.4053307
+        },
+        "r2": {
+          "mean": 0.45781467792129993,
+          "std": 0.06264628092594153
+        }
+      },
+      "fit_seconds": 0.35601033293642104
+    },
+    "gradient_boosting": {
+      "train": {
+        "mae": 4063127119.892063,
+        "rmse": 11944431699.546793,
+        "r2": 0.6630830733230151
+      },
+      "cv": {
+        "mae": {
+          "mean": 4456061311.564268,
+          "std": 164846203.38384974
+        },
+        "rmse": {
+          "mean": 15070576876.450525,
+          "std": 4587535394.2740755
+        },
+        "r2": {
+          "mean": 0.4504804444099159,
+          "std": 0.08473691666398646
+        }
+      },
+      "fit_seconds": 0.2505835408810526
+    }
+  },
+  "best_model_by_cv_mae": "gradient_boosting",
+  "library_versions": {
+    "python": "3.12",
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1"
+  },
+  "timestamp_utc": "2026-10-20T08:53:26.687064+00:00"
+}
